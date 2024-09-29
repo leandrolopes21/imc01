@@ -71,12 +71,13 @@ div.valores > p#info {
     align-items: center;
 }
 
-button {
+button { /* Este botão não existe, é criado quando chamada a função de reset*/
     background-color: #4F5C59;
     color: white;
     width: 400px;
     margin: 5px;
     padding: 5px;
+    font-size: 1.1em;
     font-weight: bolder;
     border-radius: 10px;
 }

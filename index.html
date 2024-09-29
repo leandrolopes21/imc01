@@ -11,7 +11,28 @@
 </head>
 <body>
     <h1>Calcular IMC</h1>
-    <h3>IMC = peso / altura²</h3>    
+    <h3>IMC = peso / altura²</h3>
+    
+    <div class="bloco">
+
+        <label for="altura">Digite sua altura (M)</label> <br>
+        <input type="number" id="altura"> <br>
+
+        <label for="peso">Digite seu peso (Kg)</label> <br>
+        <input type="number" id="peso"> <br>
+
+        <input type="submit" value="Calcular IMC" class="calc">
+
+        <!-- <button onclick="calcularImc()">Calcular IMC</button> -->
+
+        <!-- <button onclick="limpar()">Limpar</button> -->
+
+        <div class="valores">
+            <p class="result" id="result"></p>
+            <p class="info" id="info"></p>
+        </div>
+
+    </div>
 
     <div id="conteiner">
         <table>
@@ -48,26 +69,6 @@
         </table>
     </div>
 
-    <div class="bloco">
-
-        <label for="altura">Digite sua altura (M)</label> <br>
-        <input type="number" id="altura"> <br>
-
-        <label for="peso">Digite seu peso (Kg)</label> <br>
-        <input type="number" id="peso"> <br>
-
-        <input type="submit" value="Calcular IMC" class="calc">
-
-        <!-- <button onclick="calcularImc()">Calcular IMC</button> -->
-
-        <!-- <button onclick="limpar()">Limpar</button> -->
-
-        <div class="valores">
-            <p class="result" id="result"></p>
-            <p class="info" id="info"></p>
-        </div>
-
-    </div>
 </body>
 
 <script>
@@ -127,9 +128,9 @@
     }
     
     calc.addEventListener("click", calcularImc);
-    calc.addEventListener("click", resetDados);
+    calc.addEventListener("click", fim);
 
-    function resetDados() {
+    function fim() {
 
         altura.disabled = true; // Desabilita o campo altura
         peso.disabled = true; // Desabilita o campo peso
