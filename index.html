@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="favicon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="estilo.css">
+
+    <title>Calculo do IMC</title>
+</head>
+<body>
+    <h1>Calcular IMC</h1>
+    <h3>IMC = peso / altura²</h3>    
+
+    <div id="conteiner">
+        <table>
+            <tr>
+                <th>IMC</th>
+                <th>Classificação</th>
+                <th>Grau de Obesidade</th>
+            </tr>
+            <tr>
+                <td>Menor que 18,5</td>
+                <td id="magreza">Magreza</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Entre 18,5 e 24,9</td>
+                <td id="normal">Normal</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Entre 25,0 e 29,9</td>
+                <td id="sobrepeso">Sobrepeso</td>
+                <td>I</td>
+            </tr>
+            <tr>
+                <td>Entre 30,0 e 39,9</td>
+                <td id="obesidade">Obesidade</td>
+                <td>II</td>
+            </tr>
+            <tr>
+                <td>Maior que 40,0</td>
+                <td id="obesidadegr">Obesidade Grave</td>
+                <td>III</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="bloco">
+
+        <label for="altura">Digite sua altura (M)</label> <br>
+        <input type="number" id="altura"> <br>
+
+        <label for="peso">Digite seu peso (Kg)</label> <br>
+        <input type="number" id="peso"> <br>
+
+        <input type="submit" value="Calcular IMC" class="calc">
+
+        <!-- <button onclick="calcularImc()">Calcular IMC</button> -->
+
+        <!-- <button onclick="limpar()">Limpar</button> -->
+
+        <div class="valores">
+            <p class="result" id="result"></p>
+            <p class="info" id="info"></p>
+        </div>
+
+    </div>
+</body>
+
+<script>
+
+    var calc = document.querySelector('.calc');
+
+    var botaoReset;
+    
+    function calcularImc() {
+
+        const altura = parseFloat(document.getElementById('altura').value);
+        const peso = parseFloat(document.getElementById('peso').value);
+        const result = document.getElementById('result');
+        const info = document.getElementById('info');
+
+        if (isNaN(altura) || isNaN(peso)) {
+
+            result.innerHTML = 'Por favor, insira valores válidos.';
+            return;
+        }
+
+            const imc = peso / (altura * altura);
+            var classificacao = '';
+            var dica = '';
+
+            if ( imc < 18.5) {
+                classificacao = 'Magreza';
+                dica = 'Por favor, melhorar a alimentação e buscar seu peso ideal.';
+                document.getElementById('magreza').style.backgroundColor = "#F04438";
+            } else if ( imc < 24.9) {
+                classificacao = 'Normal';
+                dica = 'Ótimo!';
+                document.getElementById('normal').style.backgroundColor = "#3BED9A";
+            } else if ( imc <29.9) {
+                classificacao = 'Sobrepeso';
+                dica = 'Por favor, treinar mais, melhorar a alimentação e buscar seu peso ideal.';
+                document.getElementById('sobrepeso').style.backgroundColor = "#DD16F0";
+            } else if ( imc <39.9) {
+                classificacao = 'Obesidade';
+                dica = 'Este nível é crítico, busque se cuidar mais.';
+                document.getElementById('obesidade').style.backgroundColor = "#8537F0";
+            } else {
+                classificacao = 'Obesidade Grave';
+                dica = 'Atenção, procure um nutricionista com urgência!';
+                document.getElementById('obesidadegr').style.backgroundColor = "black";
+                document.getElementById('obesidadegr').style.color = "white";
+            }
+
+            result.innerHTML = ("Seu IMC é " + imc.toFixed(1) + " " + classificacao);
+
+            info.innerHTML = dica;
+
+            /* result.innerHTML = `Seu IMC é ${imc.toFixed(1)} (${classificacao}).`;
+
+            info.innerHTML = `${dica}`; */
+        
+    }
+    
+    calc.addEventListener("click", calcularImc);
+    calc.addEventListener("click", resetDados);
+
+    function resetDados() {
+
+        altura.disabled = true; // Desabilita o campo altura
+        peso.disabled = true; // Desabilita o campo peso
+        calc.disabled = true;
+
+        botaoReset = document.createElement("button"); // Cria um botão
+
+        botaoReset.textContent = "Reset"; // Insere o nome "Novo" ao botão
+        document.body.appendChild(botaoReset); // Insere o botão ao final do body
+        botaoReset.addEventListener("click", limpar); // Adiciona o evento de clique ao botão
+
+    }
+
+    function limpar() {
+
+        /*var reiniciarTabela = document.querySelectorAll(".conteiner td");
+        for (var i = 0; i < reiniciarTabela.length; i++) {
+              reiniciarTabela[i].textContent = "";
+            } */
+
+        botaoReset.parentNode.removeChild(botaoReset); // Remove o botão de reset, criado anteriormente
+
+        document.getElementById('result').innerHTML = ""; // Limpa o valor gerado pelo resultado
+        document.getElementById('info').innerHTML = ""; // Limpa o valor gerado pelo resultado
+        altura.disabled = false; // Habilita o campo altura
+        peso.disabled = false; // Habilita o campo peso
+        calc.disabled = false; // Habilita o botão para calcular IMC
+        peso.value = ""; // Limpa o valor digitado pelo usuário
+        altura.value = ""; // Limpa o valor digitado pelo usuário
+        altura.focus();
+
+        document.getElementById('magreza').style.backgroundColor = ""; // Limpa a cor inserida no campo magreza da tabela
+        document.getElementById('normal').style.backgroundColor = ""; // Limpa a cor inserida no campo magreza da tabela
+        document.getElementById('sobrepeso').style.backgroundColor = ""; // Limpa a cor inserida no campo magreza da tabela
+        document.getElementById('obesidade').style.backgroundColor = ""; // Limpa a cor inserida no campo magreza da tabela
+        document.getElementById('obesidadegr').style.backgroundColor = ""; // Limpa a cor inserida no campo magreza da tabela
+    }
+
+    /* */
+
+</script>
+
+</html>

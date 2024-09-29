@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    background-color: lightgray;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 10px;
+}
+
+h3 {
+    margin-top: 10px;
+}
+
+div.bloco {
+    background-color: #59939d;
+    width: 400px;
+    margin: 10px auto;
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.05em;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+div.bloco > input {
+    margin: 5px;
+    width: 40%;
+    height: 25px;
+    border-radius: 5px;
+}
+
+div.bloco > input.calc {
+    margin: 10px;
+    width: 40%;
+    height: 25px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+div.valores > p#result {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    margin: 10px auto;
+    width: 90%;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.valores > p#info {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    margin: 10px auto;
+    width: 90%;
+    border-radius: 5px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    background-color: #4F5C59;
+    color: white;
+    width: 400px;
+    margin: 5px;
+    padding: 5px;
+    font-weight: bolder;
+    border-radius: 10px;
+}
+
+table {
+
+    border-collapse: collapse; /* Retira o espaçamento interno entre bordas */
+    width: 411.6px;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.8em;
+    
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 0px 3px;
+}
+
+tr:nth-child(even) {
+    background-color: #59939d;
+}
+
+div#conteiner {
+    overflow-x: auto;
+}
